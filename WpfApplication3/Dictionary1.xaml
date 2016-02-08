@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApplication3"
+                    xmlns:viewModel="clr-namespace:WpfApplication3.ViewModel">
+    <DataTemplate DataType="{x:Type viewModel:UserNamesViewModel}" x:Key="DataTemplatePopup">
+        <Popup IsOpen="{Binding IsOpen}" StaysOpen="False" Placement="Mouse" AllowsTransparency="True" VerticalOffset="-50">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                    <Border Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Red">
+                        <ItemsControl ItemsSource="{Binding Names}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding ItemClick}" CommandParameter="{Binding FirstName}">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding FirstName}"/>
+                                            <TextBlock Margin="10,0,0,0" Grid.Column="1" Text="{Binding LastName}"/>
+                                        </Grid>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+                <Grid ZIndex="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Background="CadetBlue">
+                    <Polygon Points="30,20 45,20 37,30 30,20" VerticalAlignment="Top" Margin="0,-20,0,0"
+                             Stroke="Black"  >
+                        <Polygon.Fill>
+                            <SolidColorBrush Color="Black" />
+                        </Polygon.Fill>
+                    </Polygon>
+                </Grid>
+                </Grid>
+
+        </Popup>
+    </DataTemplate>
+    
+</ResourceDictionary>
